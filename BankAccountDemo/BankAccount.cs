@@ -26,12 +26,15 @@
     }
     public void deposit(double amount)
     {
-        if (amount <= 0)
-            transactions.Add(amount);
+        if (amount > 0)
+            transactions.Add(amount); 
+        else 
+            throw new Exception("You must deposit more than $0");
         balance += amount;
     }
     public void withdraw(double amount) {
         if(amount > balance) throw new Exception("Not enough funds to complete this withdrawal. $" + amount + " required. $" + balance.ToString("0.00") + " available.");
+        if(amount <= 0) throw new Exception("Withdrawal must be greater than $0");
         transactions.Add(-1*amount);
         balance-=amount;
     }
