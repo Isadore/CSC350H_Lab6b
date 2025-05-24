@@ -2,7 +2,7 @@
     private int id;
     private string customerName;
     private double balance;
-    private List<double> transactions = new List<double>();
+    private List<double> transactions = new();
     public BankAccount(string customerName, int id, double balance = 0) {
         this.customerName = customerName;
         this.balance = balance;
@@ -18,12 +18,17 @@
         get {return balance;}
     }
     public int TransactionCount {
-        get{return transactions.Count;}
+        get{return transactions.Count; }
     }
-    public void deposit(double amount) {
-        if(amount <= 0)
-        transactions.Add(amount);
-        balance+=amount;
+    public List<double> Transactions
+    {
+        get { return transactions; }
+    }
+    public void deposit(double amount)
+    {
+        if (amount <= 0)
+            transactions.Add(amount);
+        balance += amount;
     }
     public void withdraw(double amount) {
         if(amount > balance) throw new Exception("Not enough funds to complete this withdrawal. $" + amount + " required. $" + balance.ToString("0.00") + " available.");
